@@ -31,7 +31,8 @@ class _MyAppState extends State<MyApp> {
         nome: nome,
         id: Random().nextDouble().toString(),
         idade: idade,
-        senha: senha);
+        senha: senha,
+        aposta: null);
     setState(() {
       user.add(newUser);
     });
@@ -47,14 +48,6 @@ class _MyAppState extends State<MyApp> {
         context: context,
         builder: (_) {
           return Formulario(_addUser);
-        });
-  }
-
-  _openAposta(BuildContext context) {
-    showModalBottomSheet(
-        context: context,
-        builder: (_) {
-          return Makebet();
         });
   }
 
@@ -96,7 +89,10 @@ class _MyAppState extends State<MyApp> {
                 height: 50,
                 child: RaisedButton(
                   color: Colors.black,
-                  onPressed: () => _openAposta(context),
+                  onPressed: () => {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Makebet()))
+                  },
                   child: Text(
                     'Apostar',
                     style: TextStyle(
